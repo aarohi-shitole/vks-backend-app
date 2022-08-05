@@ -1,0 +1,44 @@
+{
+  "vksBackendApp": {
+    "society": {
+      "home": {
+        "title": "Societies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Society",
+        "createOrEditLabel": "Create or edit a Society",
+        "notFound": "No Societies found"
+      },
+      "created": "A new Society is created with identifier {{ param }}",
+      "updated": "A Society is updated with identifier {{ param }}",
+      "deleted": "A Society is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Society {{ id }}?"
+      },
+      "detail": {
+        "title": "Society"
+      },
+      "id": "ID",
+      "societyName": "Society Name",
+      "address": "Address",
+      "village": "Village",
+      "tahsil": "Tahsil",
+      "state": "State",
+      "district": "District",
+      "logo": "Logo",
+      "registrationNumber": "Registration Number",
+      "gstinNumber": "Gstin Number",
+      "panNumber": "Pan Number",
+      "tanNumber": "Tan Number",
+      "phoneNumber": "Phone Number",
+      "emailAddress": "Email Address",
+      "pinCode": "Pin Code",
+      "createdOn": "Created On",
+      "createdBy": "Created By",
+      "description": "Description",
+      "isActivate": "Is Activate",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "society": "Society"
+    }
+  }
+}

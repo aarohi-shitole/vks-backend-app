@@ -1,0 +1,36 @@
+{
+  "vksBackendApp": {
+    "memberAssets": {
+      "home": {
+        "title": "Member Assets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Member Assets",
+        "createOrEditLabel": "Create or edit a Member Assets",
+        "notFound": "No Member Assets found"
+      },
+      "created": "A new Member Assets is created with identifier {{ param }}",
+      "updated": "A Member Assets is updated with identifier {{ param }}",
+      "deleted": "A Member Assets is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Member Assets {{ id }}?"
+      },
+      "detail": {
+        "title": "Member Assets"
+      },
+      "id": "ID",
+      "assetAmount": "Asset Amount",
+      "otherDocument1": "Other Document 1",
+      "otherDocument2": "Other Document 2",
+      "assetType": "Asset Type",
+      "assetArea": "Asset Area",
+      "assetAddress": "Asset Address",
+      "numberOfAssets": "Number Of Assets",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "member": "Member"
+    }
+  }
+}

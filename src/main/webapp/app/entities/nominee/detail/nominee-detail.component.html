@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="nominee">
+      <h2 data-cy="nomineeDetailsHeading"><span jhiTranslate="vksBackendApp.nominee.detail.title">Nominee</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ nominee.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ nominee.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ nominee.middleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ nominee.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.fatherName">Father Name</span></dt>
+        <dd>
+          <span>{{ nominee.fatherName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.motherName">Mother Name</span></dt>
+        <dd>
+          <span>{{ nominee.motherName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.guardianName">Guardian Name</span></dt>
+        <dd>
+          <span>{{ nominee.guardianName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.gender">Gender</span></dt>
+        <dd>
+          <span>{{ nominee.gender }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.dob">Dob</span></dt>
+        <dd>
+          <span>{{ nominee.dob | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.aadharCard">Aadhar Card</span></dt>
+        <dd>
+          <span>{{ nominee.aadharCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.nomineeDeclareDate">Nominee Declare Date</span></dt>
+        <dd>
+          <span>{{ nominee.nomineeDeclareDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.relation">Relation</span></dt>
+        <dd>
+          <span>{{ nominee.relation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.permanentAddr">Permanent Addr</span></dt>
+        <dd>
+          <span>{{ nominee.permanentAddr }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ nominee.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ nominee.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ nominee.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ nominee.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ nominee.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.nominee.member">Member</span></dt>
+        <dd>
+          <div *ngIf="nominee.member">
+            <a [routerLink]="['/member', nominee.member.id, 'view']">{{ nominee.member?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/nominee', nominee.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

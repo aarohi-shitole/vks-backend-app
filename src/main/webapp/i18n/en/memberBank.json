@@ -1,0 +1,33 @@
+{
+  "vksBackendApp": {
+    "memberBank": {
+      "home": {
+        "title": "Member Banks",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Member Bank",
+        "createOrEditLabel": "Create or edit a Member Bank",
+        "notFound": "No Member Banks found"
+      },
+      "created": "A new Member Bank is created with identifier {{ param }}",
+      "updated": "A Member Bank is updated with identifier {{ param }}",
+      "deleted": "A Member Bank is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Member Bank {{ id }}?"
+      },
+      "detail": {
+        "title": "Member Bank"
+      },
+      "id": "ID",
+      "bankName": "Bank Name",
+      "branchName": "Branch Name",
+      "accountNumber": "Account Number",
+      "ifsccode": "Ifsccode",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "isDeleted": "Is Deleted",
+      "member": "Member"
+    }
+  }
+}

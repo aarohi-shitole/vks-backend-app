@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "securityUser": "Security User",
+        "securityRole": "Security Role",
+        "securityPermission": "Security Permission",
+        "parameterLookup": "Parameter Lookup",
+        "member": "Member",
+        "memberBank": "Member Bank",
+        "memberAssets": "Member Assets",
+        "memberLandAssets": "Member Land Assets",
+        "nominee": "Nominee",
+        "society": "Society",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

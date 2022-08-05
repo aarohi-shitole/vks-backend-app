@@ -1,0 +1,218 @@
+<div>
+  <h2 id="page-heading" data-cy="MemberHeading">
+    <span jhiTranslate="vksBackendApp.member.home.title">Members</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksBackendApp.member.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-member"
+        [routerLink]="['/member/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksBackendApp.member.home.createLabel"> Create a new Member </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="members?.length === 0">
+    <span jhiTranslate="vksBackendApp.member.home.notFound">No Members found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="members && members.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="firstName">
+            <span jhiTranslate="vksBackendApp.member.firstName">First Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="middleName">
+            <span jhiTranslate="vksBackendApp.member.middleName">Middle Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <span jhiTranslate="vksBackendApp.member.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="memberUniqueId">
+            <span jhiTranslate="vksBackendApp.member.memberUniqueId">Member Unique Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fatherName">
+            <span jhiTranslate="vksBackendApp.member.fatherName">Father Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="motherName">
+            <span jhiTranslate="vksBackendApp.member.motherName">Mother Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gender">
+            <span jhiTranslate="vksBackendApp.member.gender">Gender</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dob"><span jhiTranslate="vksBackendApp.member.dob">Dob</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="vksBackendApp.member.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mobileNo">
+            <span jhiTranslate="vksBackendApp.member.mobileNo">Mobile No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="religion">
+            <span jhiTranslate="vksBackendApp.member.religion">Religion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="category">
+            <span jhiTranslate="vksBackendApp.member.category">Category</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cast"><span jhiTranslate="vksBackendApp.member.cast">Cast</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="aadharCard">
+            <span jhiTranslate="vksBackendApp.member.aadharCard">Aadhar Card</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="panCard">
+            <span jhiTranslate="vksBackendApp.member.panCard">Pan Card</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="rationCard">
+            <span jhiTranslate="vksBackendApp.member.rationCard">Ration Card</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="familyMemberCount">
+            <span jhiTranslate="vksBackendApp.member.familyMemberCount">Family Member Count</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="occupation">
+            <span jhiTranslate="vksBackendApp.member.occupation">Occupation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="applicationDate">
+            <span jhiTranslate="vksBackendApp.member.applicationDate">Application Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="vksBackendApp.member.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="kmpStatus">
+            <span jhiTranslate="vksBackendApp.member.kmpStatus">Kmp Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="boardResolutionNo">
+            <span jhiTranslate="vksBackendApp.member.boardResolutionNo">Board Resolution No</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="boardResolutionDate">
+            <span jhiTranslate="vksBackendApp.member.boardResolutionDate">Board Resolution Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="loanStatus">
+            <span jhiTranslate="vksBackendApp.member.loanStatus">Loan Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="memberType">
+            <span jhiTranslate="vksBackendApp.member.memberType">Member Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isactive">
+            <span jhiTranslate="vksBackendApp.member.isactive">Isactive</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksBackendApp.member.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksBackendApp.member.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksBackendApp.member.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksBackendApp.member.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="memberBank.id">
+            <span jhiTranslate="vksBackendApp.member.memberBank">Member Bank</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksBackendApp.member.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/member', member.id, 'view']">{{ member.id }}</a>
+          </td>
+          <td>{{ member.firstName }}</td>
+          <td>{{ member.middleName }}</td>
+          <td>{{ member.lastName }}</td>
+          <td>{{ member.memberUniqueId }}</td>
+          <td>{{ member.fatherName }}</td>
+          <td>{{ member.motherName }}</td>
+          <td jhiTranslate="{{ 'vksBackendApp.Gender.' + member.gender }}">{{ member.gender }}</td>
+          <td>{{ member.dob | formatMediumDate }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.mobileNo }}</td>
+          <td>{{ member.religion }}</td>
+          <td>{{ member.category }}</td>
+          <td>{{ member.cast }}</td>
+          <td>{{ member.aadharCard }}</td>
+          <td>{{ member.panCard }}</td>
+          <td>{{ member.rationCard }}</td>
+          <td>{{ member.familyMemberCount }}</td>
+          <td>{{ member.occupation }}</td>
+          <td>{{ member.applicationDate | formatMediumDatetime }}</td>
+          <td jhiTranslate="{{ 'vksBackendApp.Status.' + member.status }}">{{ member.status }}</td>
+          <td>{{ member.kmpStatus }}</td>
+          <td>{{ member.boardResolutionNo }}</td>
+          <td>{{ member.boardResolutionDate | formatMediumDate }}</td>
+          <td jhiTranslate="{{ 'vksBackendApp.LoanStatus.' + member.loanStatus }}">{{ member.loanStatus }}</td>
+          <td>{{ member.memberType }}</td>
+          <td>{{ member.isactive }}</td>
+          <td>{{ member.lastModified | formatMediumDatetime }}</td>
+          <td>{{ member.lastModifiedBy }}</td>
+          <td>{{ member.createdBy }}</td>
+          <td>{{ member.createdOn | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="member.memberBank">
+              <a [routerLink]="['/member-bank', member.memberBank.id, 'view']">{{ member.memberBank?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="member.society">
+              <a [routerLink]="['/society', member.society.id, 'view']">{{ member.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/member', member.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/member', member.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(member)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="members && members.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

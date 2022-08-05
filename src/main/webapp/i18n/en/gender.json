@@ -1,0 +1,10 @@
+{
+  "vksBackendApp": {
+    "Gender": {
+      "null": "",
+      "MALE": "Male",
+      "FEMALE": "Female",
+      "OTHER": "Other"
+    }
+  }
+}
