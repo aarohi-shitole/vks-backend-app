@@ -1,0 +1,92 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="memberAssets">
+      <h2 data-cy="memberAssetsDetailsHeading"><span jhiTranslate="vksBackendApp.memberAssets.detail.title">Member Assets</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ memberAssets.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.assetAmount">Asset Amount</span></dt>
+        <dd>
+          <span>{{ memberAssets.assetAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.otherDocument1">Other Document 1</span></dt>
+        <dd>
+          <div *ngIf="memberAssets.otherDocument1">
+            <a (click)="openFile(memberAssets.otherDocument1, memberAssets.otherDocument1ContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ memberAssets.otherDocument1ContentType }}, {{ byteSize(memberAssets.otherDocument1) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.otherDocument2">Other Document 2</span></dt>
+        <dd>
+          <div *ngIf="memberAssets.otherDocument2">
+            <a (click)="openFile(memberAssets.otherDocument2, memberAssets.otherDocument2ContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ memberAssets.otherDocument2ContentType }}, {{ byteSize(memberAssets.otherDocument2) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.assetType">Asset Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksBackendApp.AssetType.' + memberAssets.assetType }}">{{ memberAssets.assetType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.assetArea">Asset Area</span></dt>
+        <dd>
+          <span>{{ memberAssets.assetArea }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.assetAddress">Asset Address</span></dt>
+        <dd>
+          <span>{{ memberAssets.assetAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.numberOfAssets">Number Of Assets</span></dt>
+        <dd>
+          <span>{{ memberAssets.numberOfAssets }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ memberAssets.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ memberAssets.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ memberAssets.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ memberAssets.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ memberAssets.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberAssets.member">Member</span></dt>
+        <dd>
+          <div *ngIf="memberAssets.member">
+            <a [routerLink]="['/member', memberAssets.member.id, 'view']">{{ memberAssets.member?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/member-assets', memberAssets.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

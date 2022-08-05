@@ -1,0 +1,10 @@
+{
+  "vksBackendApp": {
+    "AssetType": {
+      "null": "",
+      "FARM_MACHINERY": "Farm_Machinery",
+      "HOUSE": "House",
+      "OTHERS": "Others"
+    }
+  }
+}

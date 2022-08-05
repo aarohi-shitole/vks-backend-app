@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Society.
+    -->
+    <changeSet id="20220805095321-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="society_id"
+                                 baseTableName="society"
+                                 constraintName="fk_society__society_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="society"/>
+    </changeSet>
+</databaseChangeLog>

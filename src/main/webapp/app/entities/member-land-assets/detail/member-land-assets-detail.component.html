@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="memberLandAssets">
+      <h2 data-cy="memberLandAssetsDetailsHeading">
+        <span jhiTranslate="vksBackendApp.memberLandAssets.detail.title">Member Land Assets</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.landType">Land Type</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.landGatNo">Land Gat No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landGatNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.landAreaInHector">Land Area In Hector</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.landAreaInHector }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.jindagiPatrakNo">Jindagi Patrak No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.jindagiPatrakNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.jindagiAmount">Jindagi Amount</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.jindagiAmount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.assetLandAddress">Asset Land Address</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.assetLandAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.valueOfLand">Value Of Land</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.valueOfLand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.assigneeOfLand">Assignee Of Land</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.assigneeOfLand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.isDeleted }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.mLLoanNo">M L Loan No</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.mLLoanNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.jindagiPatrak">Jindagi Patrak</span></dt>
+        <dd>
+          <div *ngIf="memberLandAssets.jindagiPatrak">
+            <a
+              (click)="openFile(memberLandAssets.jindagiPatrak, memberLandAssets.jindagiPatrakContentType)"
+              jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ memberLandAssets.jindagiPatrakContentType }}, {{ byteSize(memberLandAssets.jindagiPatrak) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.eightA">Eight A</span></dt>
+        <dd>
+          <div *ngIf="memberLandAssets.eightA">
+            <a (click)="openFile(memberLandAssets.eightA, memberLandAssets.eightAContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ memberLandAssets.eightAContentType }}, {{ byteSize(memberLandAssets.eightA) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.saatBara">Saat Bara</span></dt>
+        <dd>
+          <div *ngIf="memberLandAssets.saatBara">
+            <a (click)="openFile(memberLandAssets.saatBara, memberLandAssets.saatBaraContentType)" jhiTranslate="entity.action.open"
+              >Open</a
+            >
+            {{ memberLandAssets.saatBaraContentType }}, {{ byteSize(memberLandAssets.saatBara) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.memberLandAssets.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ memberLandAssets.createdOn | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/member-land-assets', memberLandAssets.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

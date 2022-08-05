@@ -1,0 +1,117 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="society">
+      <h2 data-cy="societyDetailsHeading"><span jhiTranslate="vksBackendApp.society.detail.title">Society</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ society.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.societyName">Society Name</span></dt>
+        <dd>
+          <span>{{ society.societyName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.address">Address</span></dt>
+        <dd>
+          <span>{{ society.address }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.village">Village</span></dt>
+        <dd>
+          <span>{{ society.village }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.tahsil">Tahsil</span></dt>
+        <dd>
+          <span>{{ society.tahsil }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.state">State</span></dt>
+        <dd>
+          <span>{{ society.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.district">District</span></dt>
+        <dd>
+          <span>{{ society.district }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.logo">Logo</span></dt>
+        <dd>
+          <div *ngIf="society.logo">
+            <a (click)="openFile(society.logo, society.logoContentType)" jhiTranslate="entity.action.open">Open</a>
+            {{ society.logoContentType }}, {{ byteSize(society.logo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.registrationNumber">Registration Number</span></dt>
+        <dd>
+          <span>{{ society.registrationNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.gstinNumber">Gstin Number</span></dt>
+        <dd>
+          <span>{{ society.gstinNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.panNumber">Pan Number</span></dt>
+        <dd>
+          <span>{{ society.panNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.tanNumber">Tan Number</span></dt>
+        <dd>
+          <span>{{ society.tanNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.phoneNumber">Phone Number</span></dt>
+        <dd>
+          <span>{{ society.phoneNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.emailAddress">Email Address</span></dt>
+        <dd>
+          <span>{{ society.emailAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.pinCode">Pin Code</span></dt>
+        <dd>
+          <span>{{ society.pinCode }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ society.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ society.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.description">Description</span></dt>
+        <dd>
+          <span>{{ society.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.isActivate">Is Activate</span></dt>
+        <dd>
+          <span>{{ society.isActivate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ society.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ society.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.society.society">Society</span></dt>
+        <dd>
+          <div *ngIf="society.society">
+            <a [routerLink]="['/society', society.society.id, 'view']">{{ society.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/society', society.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

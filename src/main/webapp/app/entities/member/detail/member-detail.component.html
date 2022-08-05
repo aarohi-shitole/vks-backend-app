@@ -1,0 +1,160 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="member">
+      <h2 data-cy="memberDetailsHeading"><span jhiTranslate="vksBackendApp.member.detail.title">Member</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ member.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.firstName">First Name</span></dt>
+        <dd>
+          <span>{{ member.firstName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.middleName">Middle Name</span></dt>
+        <dd>
+          <span>{{ member.middleName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.lastName">Last Name</span></dt>
+        <dd>
+          <span>{{ member.lastName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.memberUniqueId">Member Unique Id</span></dt>
+        <dd>
+          <span>{{ member.memberUniqueId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.fatherName">Father Name</span></dt>
+        <dd>
+          <span>{{ member.fatherName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.motherName">Mother Name</span></dt>
+        <dd>
+          <span>{{ member.motherName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.gender">Gender</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksBackendApp.Gender.' + member.gender }}">{{ member.gender }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.dob">Dob</span></dt>
+        <dd>
+          <span>{{ member.dob | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.email">Email</span></dt>
+        <dd>
+          <span>{{ member.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.mobileNo">Mobile No</span></dt>
+        <dd>
+          <span>{{ member.mobileNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.religion">Religion</span></dt>
+        <dd>
+          <span>{{ member.religion }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.category">Category</span></dt>
+        <dd>
+          <span>{{ member.category }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.cast">Cast</span></dt>
+        <dd>
+          <span>{{ member.cast }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.aadharCard">Aadhar Card</span></dt>
+        <dd>
+          <span>{{ member.aadharCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.panCard">Pan Card</span></dt>
+        <dd>
+          <span>{{ member.panCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.rationCard">Ration Card</span></dt>
+        <dd>
+          <span>{{ member.rationCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.familyMemberCount">Family Member Count</span></dt>
+        <dd>
+          <span>{{ member.familyMemberCount }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.occupation">Occupation</span></dt>
+        <dd>
+          <span>{{ member.occupation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.applicationDate">Application Date</span></dt>
+        <dd>
+          <span>{{ member.applicationDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksBackendApp.Status.' + member.status }}">{{ member.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.kmpStatus">Kmp Status</span></dt>
+        <dd>
+          <span>{{ member.kmpStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.boardResolutionNo">Board Resolution No</span></dt>
+        <dd>
+          <span>{{ member.boardResolutionNo }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.boardResolutionDate">Board Resolution Date</span></dt>
+        <dd>
+          <span>{{ member.boardResolutionDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.loanStatus">Loan Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksBackendApp.LoanStatus.' + member.loanStatus }}">{{ member.loanStatus }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.memberType">Member Type</span></dt>
+        <dd>
+          <span>{{ member.memberType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.isactive">Isactive</span></dt>
+        <dd>
+          <span>{{ member.isactive }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ member.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ member.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ member.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ member.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.memberBank">Member Bank</span></dt>
+        <dd>
+          <div *ngIf="member.memberBank">
+            <a [routerLink]="['/member-bank', member.memberBank.id, 'view']">{{ member.memberBank?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.member.society">Society</span></dt>
+        <dd>
+          <div *ngIf="member.society">
+            <a [routerLink]="['/society', member.society.id, 'view']">{{ member.society?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/member', member.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

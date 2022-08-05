@@ -1,0 +1,373 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-member-heading" data-cy="MemberCreateUpdateHeading" jhiTranslate="vksBackendApp.member.home.createOrEditLabel">
+        Create or edit a Member
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.firstName" for="field_firstName">First Name</label>
+          <input type="text" class="form-control" name="firstName" id="field_firstName" data-cy="firstName" formControlName="firstName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.middleName" for="field_middleName">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="middleName"
+            id="field_middleName"
+            data-cy="middleName"
+            formControlName="middleName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.lastName" for="field_lastName">Last Name</label>
+          <input type="text" class="form-control" name="lastName" id="field_lastName" data-cy="lastName" formControlName="lastName" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.memberUniqueId" for="field_memberUniqueId">Member Unique Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="memberUniqueId"
+            id="field_memberUniqueId"
+            data-cy="memberUniqueId"
+            formControlName="memberUniqueId"
+          />
+          <div
+            *ngIf="
+              editForm.get('memberUniqueId')!.invalid && (editForm.get('memberUniqueId')!.dirty || editForm.get('memberUniqueId')!.touched)
+            "
+          ></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.fatherName" for="field_fatherName">Father Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="fatherName"
+            id="field_fatherName"
+            data-cy="fatherName"
+            formControlName="fatherName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.motherName" for="field_motherName">Mother Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motherName"
+            id="field_motherName"
+            data-cy="motherName"
+            formControlName="motherName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.gender" for="field_gender">Gender</label>
+          <select class="form-control" name="gender" formControlName="gender" id="field_gender" data-cy="gender">
+            <option [ngValue]="null">{{ 'vksBackendApp.Gender.null' | translate }}</option>
+            <option *ngFor="let gender of genderValues" [value]="gender">{{ 'vksBackendApp.Gender.' + gender | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.dob" for="field_dob">Dob</label>
+          <div class="input-group">
+            <input
+              id="field_dob"
+              data-cy="dob"
+              type="text"
+              class="form-control"
+              name="dob"
+              ngbDatepicker
+              #dobDp="ngbDatepicker"
+              formControlName="dob"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dobDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.mobileNo" for="field_mobileNo">Mobile No</label>
+          <input type="text" class="form-control" name="mobileNo" id="field_mobileNo" data-cy="mobileNo" formControlName="mobileNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.religion" for="field_religion">Religion</label>
+          <input type="text" class="form-control" name="religion" id="field_religion" data-cy="religion" formControlName="religion" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.category" for="field_category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.cast" for="field_cast">Cast</label>
+          <input type="text" class="form-control" name="cast" id="field_cast" data-cy="cast" formControlName="cast" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.aadharCard" for="field_aadharCard">Aadhar Card</label>
+          <input
+            type="text"
+            class="form-control"
+            name="aadharCard"
+            id="field_aadharCard"
+            data-cy="aadharCard"
+            formControlName="aadharCard"
+          />
+          <div
+            *ngIf="editForm.get('aadharCard')!.invalid && (editForm.get('aadharCard')!.dirty || editForm.get('aadharCard')!.touched)"
+          ></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.panCard" for="field_panCard">Pan Card</label>
+          <input type="text" class="form-control" name="panCard" id="field_panCard" data-cy="panCard" formControlName="panCard" />
+          <div *ngIf="editForm.get('panCard')!.invalid && (editForm.get('panCard')!.dirty || editForm.get('panCard')!.touched)"></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.rationCard" for="field_rationCard">Ration Card</label>
+          <input
+            type="text"
+            class="form-control"
+            name="rationCard"
+            id="field_rationCard"
+            data-cy="rationCard"
+            formControlName="rationCard"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.familyMemberCount" for="field_familyMemberCount"
+            >Family Member Count</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="familyMemberCount"
+            id="field_familyMemberCount"
+            data-cy="familyMemberCount"
+            formControlName="familyMemberCount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.occupation" for="field_occupation">Occupation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="occupation"
+            id="field_occupation"
+            data-cy="occupation"
+            formControlName="occupation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.applicationDate" for="field_applicationDate">Application Date</label>
+          <div class="d-flex">
+            <input
+              id="field_applicationDate"
+              data-cy="applicationDate"
+              type="datetime-local"
+              class="form-control"
+              name="applicationDate"
+              formControlName="applicationDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'vksBackendApp.Status.null' | translate }}</option>
+            <option *ngFor="let status of statusValues" [value]="status">{{ 'vksBackendApp.Status.' + status | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.kmpStatus" for="field_kmpStatus">Kmp Status</label>
+          <input type="checkbox" class="form-check" name="kmpStatus" id="field_kmpStatus" data-cy="kmpStatus" formControlName="kmpStatus" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.boardResolutionNo" for="field_boardResolutionNo"
+            >Board Resolution No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="boardResolutionNo"
+            id="field_boardResolutionNo"
+            data-cy="boardResolutionNo"
+            formControlName="boardResolutionNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.boardResolutionDate" for="field_boardResolutionDate"
+            >Board Resolution Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_boardResolutionDate"
+              data-cy="boardResolutionDate"
+              type="text"
+              class="form-control"
+              name="boardResolutionDate"
+              ngbDatepicker
+              #boardResolutionDateDp="ngbDatepicker"
+              formControlName="boardResolutionDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="boardResolutionDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.loanStatus" for="field_loanStatus">Loan Status</label>
+          <select class="form-control" name="loanStatus" formControlName="loanStatus" id="field_loanStatus" data-cy="loanStatus">
+            <option [ngValue]="null">{{ 'vksBackendApp.LoanStatus.null' | translate }}</option>
+            <option *ngFor="let loanStatus of loanStatusValues" [value]="loanStatus">
+              {{ 'vksBackendApp.LoanStatus.' + loanStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.memberType" for="field_memberType">Member Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="memberType"
+            id="field_memberType"
+            data-cy="memberType"
+            formControlName="memberType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.isactive" for="field_isactive">Isactive</label>
+          <input type="checkbox" class="form-check" name="isactive" id="field_isactive" data-cy="isactive" formControlName="isactive" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.memberBank" for="field_memberBank">Member Bank</label>
+          <select
+            class="form-control"
+            id="field_memberBank"
+            data-cy="memberBank"
+            name="memberBank"
+            formControlName="memberBank"
+            [compareWith]="compareMemberBank"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="memberBankOption" *ngFor="let memberBankOption of memberBanksCollection">{{ memberBankOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.member.society" for="field_society">Society</label>
+          <select
+            class="form-control"
+            id="field_society"
+            data-cy="society"
+            name="society"
+            formControlName="society"
+            [compareWith]="compareSociety"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="societyOption" *ngFor="let societyOption of societiesSharedCollection">{{ societyOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

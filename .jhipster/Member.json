@@ -1,0 +1,155 @@
+{
+  "applications": "*",
+  "changelogDate": "20220805095316",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "member",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "middleName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "memberUniqueId",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "fatherName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "motherName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "Gender",
+      "fieldValues": "MALE (Male),FEMALE (Female),OTHER (Other)"
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mobileNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "religion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "category",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cast",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "aadharCard",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "panCard",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "rationCard",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "familyMemberCount",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "occupation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applicationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "CREATED (Created),DOCUMENT_VERIFIED (Document_Verified),KYC_GENREATED (KYC_Genreated),KMP_GENREATED (KMP_Genreated),LOAN_DEMAND (loan_Demand),LOAN_ACTIVE (Loan_Active)"
+    },
+    {
+      "fieldName": "kmpStatus",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "boardResolutionNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "boardResolutionDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "loanStatus",
+      "fieldType": "LoanStatus",
+      "fieldValues": "APPLIED (Applied),PENDING (Pending),CHART_GENRATED (Chart_Genrated),APPROVED (Approved),DISBURSED (Disbursed),ACTIVE (Active),CLOSED (Closed)"
+    },
+    {
+      "fieldName": "memberType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isactive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Member",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "memberBank",
+      "otherEntityRelationshipName": "member",
+      "ownerSide": true,
+      "relationshipName": "memberBank",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "society",
+      "relationshipName": "society",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

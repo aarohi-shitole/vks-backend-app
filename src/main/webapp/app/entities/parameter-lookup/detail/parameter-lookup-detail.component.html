@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parameterLookup">
+      <h2 data-cy="parameterLookupDetailsHeading">
+        <span jhiTranslate="vksBackendApp.parameterLookup.detail.title">Parameter Lookup</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parameterLookup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.parameterType">Parameter Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vksBackendApp.ParameterType.' + parameterLookup.parameterType }}">{{
+            parameterLookup.parameterType
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.description">Description</span></dt>
+        <dd>
+          <span>{{ parameterLookup.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.displayValue">Display Value</span></dt>
+        <dd>
+          <span>{{ parameterLookup.displayValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.lastModified">Last Modified</span></dt>
+        <dd>
+          <span>{{ parameterLookup.lastModified | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.lastModifiedBy">Last Modified By</span></dt>
+        <dd>
+          <span>{{ parameterLookup.lastModifiedBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.createdBy">Created By</span></dt>
+        <dd>
+          <span>{{ parameterLookup.createdBy }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.createdOn">Created On</span></dt>
+        <dd>
+          <span>{{ parameterLookup.createdOn | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="vksBackendApp.parameterLookup.isDeleted">Is Deleted</span></dt>
+        <dd>
+          <span>{{ parameterLookup.isDeleted }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parameter-lookup', parameterLookup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

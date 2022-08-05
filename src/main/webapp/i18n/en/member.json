@@ -1,0 +1,55 @@
+{
+  "vksBackendApp": {
+    "member": {
+      "home": {
+        "title": "Members",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Member",
+        "createOrEditLabel": "Create or edit a Member",
+        "notFound": "No Members found"
+      },
+      "created": "A new Member is created with identifier {{ param }}",
+      "updated": "A Member is updated with identifier {{ param }}",
+      "deleted": "A Member is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Member"
+      },
+      "id": "ID",
+      "firstName": "First Name",
+      "middleName": "Middle Name",
+      "lastName": "Last Name",
+      "memberUniqueId": "Member Unique Id",
+      "fatherName": "Father Name",
+      "motherName": "Mother Name",
+      "gender": "Gender",
+      "dob": "Dob",
+      "email": "Email",
+      "mobileNo": "Mobile No",
+      "religion": "Religion",
+      "category": "Category",
+      "cast": "Cast",
+      "aadharCard": "Aadhar Card",
+      "panCard": "Pan Card",
+      "rationCard": "Ration Card",
+      "familyMemberCount": "Family Member Count",
+      "occupation": "Occupation",
+      "applicationDate": "Application Date",
+      "status": "Status",
+      "kmpStatus": "Kmp Status",
+      "boardResolutionNo": "Board Resolution No",
+      "boardResolutionDate": "Board Resolution Date",
+      "loanStatus": "Loan Status",
+      "memberType": "Member Type",
+      "isactive": "Isactive",
+      "lastModified": "Last Modified",
+      "lastModifiedBy": "Last Modified By",
+      "createdBy": "Created By",
+      "createdOn": "Created On",
+      "memberBank": "Member Bank",
+      "society": "Society"
+    }
+  }
+}

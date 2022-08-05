@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20220805095315",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "parameter_lookup",
+  "fields": [
+    {
+      "fieldName": "parameterType",
+      "fieldType": "ParameterType",
+      "fieldValues": "ACCOUNT (Account),RELIGION (Religion),CASTE (Caste),CATEGORY (Category),FARMER (Farmer),RESOLUTION (Resolution),EXECUTIVE_TITLE (Executive_Title),BELONGING (Belonging),INVESTMENT (Investment),MEASURING_UNIT (Measuring_Unit)"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "ParameterLookup",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

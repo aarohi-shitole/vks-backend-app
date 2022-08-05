@@ -1,0 +1,104 @@
+{
+  "applications": "*",
+  "changelogDate": "20220805095321",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "society",
+  "fields": [
+    {
+      "fieldName": "societyName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "village",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tahsil",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "district",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "logo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gstinNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "panNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tanNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "emailAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pinCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdOn",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isActivate",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lastModified",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastModifiedBy",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Society",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "society",
+      "relationshipName": "society",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

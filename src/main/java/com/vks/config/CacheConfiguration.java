@@ -48,6 +48,22 @@ public class CacheConfiguration {
             createCache(cm, com.vks.domain.User.class.getName());
             createCache(cm, com.vks.domain.Authority.class.getName());
             createCache(cm, com.vks.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.vks.domain.SecurityUser.class.getName());
+            createCache(cm, com.vks.domain.SecurityUser.class.getName() + ".securityPermissions");
+            createCache(cm, com.vks.domain.SecurityUser.class.getName() + ".securityRoles");
+            createCache(cm, com.vks.domain.SecurityRole.class.getName());
+            createCache(cm, com.vks.domain.SecurityRole.class.getName() + ".securityPermissions");
+            createCache(cm, com.vks.domain.SecurityRole.class.getName() + ".securityUsers");
+            createCache(cm, com.vks.domain.SecurityPermission.class.getName());
+            createCache(cm, com.vks.domain.SecurityPermission.class.getName() + ".securityRoles");
+            createCache(cm, com.vks.domain.SecurityPermission.class.getName() + ".securityUsers");
+            createCache(cm, com.vks.domain.ParameterLookup.class.getName());
+            createCache(cm, com.vks.domain.Member.class.getName());
+            createCache(cm, com.vks.domain.MemberBank.class.getName());
+            createCache(cm, com.vks.domain.MemberAssets.class.getName());
+            createCache(cm, com.vks.domain.MemberLandAssets.class.getName());
+            createCache(cm, com.vks.domain.Nominee.class.getName());
+            createCache(cm, com.vks.domain.Society.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

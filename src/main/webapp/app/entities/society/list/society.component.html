@@ -1,0 +1,185 @@
+<div>
+  <h2 id="page-heading" data-cy="SocietyHeading">
+    <span jhiTranslate="vksBackendApp.society.home.title">Societies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksBackendApp.society.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-society"
+        [routerLink]="['/society/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksBackendApp.society.home.createLabel"> Create a new Society </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="societies?.length === 0">
+    <span jhiTranslate="vksBackendApp.society.home.notFound">No Societies found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="societies && societies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="societyName">
+            <span jhiTranslate="vksBackendApp.society.societyName">Society Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="address">
+            <span jhiTranslate="vksBackendApp.society.address">Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="village">
+            <span jhiTranslate="vksBackendApp.society.village">Village</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tahsil">
+            <span jhiTranslate="vksBackendApp.society.tahsil">Tahsil</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="state">
+            <span jhiTranslate="vksBackendApp.society.state">State</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="district">
+            <span jhiTranslate="vksBackendApp.society.district">District</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="logo"><span jhiTranslate="vksBackendApp.society.logo">Logo</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="registrationNumber">
+            <span jhiTranslate="vksBackendApp.society.registrationNumber">Registration Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gstinNumber">
+            <span jhiTranslate="vksBackendApp.society.gstinNumber">Gstin Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="panNumber">
+            <span jhiTranslate="vksBackendApp.society.panNumber">Pan Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tanNumber">
+            <span jhiTranslate="vksBackendApp.society.tanNumber">Tan Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="phoneNumber">
+            <span jhiTranslate="vksBackendApp.society.phoneNumber">Phone Number</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="emailAddress">
+            <span jhiTranslate="vksBackendApp.society.emailAddress">Email Address</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pinCode">
+            <span jhiTranslate="vksBackendApp.society.pinCode">Pin Code</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksBackendApp.society.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksBackendApp.society.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <span jhiTranslate="vksBackendApp.society.description">Description</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isActivate">
+            <span jhiTranslate="vksBackendApp.society.isActivate">Is Activate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksBackendApp.society.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksBackendApp.society.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="society.id">
+            <span jhiTranslate="vksBackendApp.society.society">Society</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let society of societies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/society', society.id, 'view']">{{ society.id }}</a>
+          </td>
+          <td>{{ society.societyName }}</td>
+          <td>{{ society.address }}</td>
+          <td>{{ society.village }}</td>
+          <td>{{ society.tahsil }}</td>
+          <td>{{ society.state }}</td>
+          <td>{{ society.district }}</td>
+          <td>
+            <a *ngIf="society.logo" (click)="openFile(society.logo, society.logoContentType)" jhiTranslate="entity.action.open">Open</a>
+            <span *ngIf="society.logo">{{ society.logoContentType }}, {{ byteSize(society.logo) }}</span>
+          </td>
+          <td>{{ society.registrationNumber }}</td>
+          <td>{{ society.gstinNumber }}</td>
+          <td>{{ society.panNumber }}</td>
+          <td>{{ society.tanNumber }}</td>
+          <td>{{ society.phoneNumber }}</td>
+          <td>{{ society.emailAddress }}</td>
+          <td>{{ society.pinCode }}</td>
+          <td>{{ society.createdOn | formatMediumDatetime }}</td>
+          <td>{{ society.createdBy }}</td>
+          <td>{{ society.description }}</td>
+          <td>{{ society.isActivate }}</td>
+          <td>{{ society.lastModified | formatMediumDatetime }}</td>
+          <td>{{ society.lastModifiedBy }}</td>
+          <td>
+            <div *ngIf="society.society">
+              <a [routerLink]="['/society', society.society.id, 'view']">{{ society.society?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/society', society.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/society', society.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(society)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="societies && societies.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

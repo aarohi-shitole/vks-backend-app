@@ -1,0 +1,170 @@
+<div>
+  <h2 id="page-heading" data-cy="NomineeHeading">
+    <span jhiTranslate="vksBackendApp.nominee.home.title">Nominees</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vksBackendApp.nominee.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-nominee"
+        [routerLink]="['/nominee/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vksBackendApp.nominee.home.createLabel"> Create a new Nominee </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters" (filterChange)="navigateToWithComponentValues()"></jhi-filter>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="nominees?.length === 0">
+    <span jhiTranslate="vksBackendApp.nominee.home.notFound">No Nominees found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="nominees && nominees.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="firstName">
+            <span jhiTranslate="vksBackendApp.nominee.firstName">First Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="middleName">
+            <span jhiTranslate="vksBackendApp.nominee.middleName">Middle Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastName">
+            <span jhiTranslate="vksBackendApp.nominee.lastName">Last Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="fatherName">
+            <span jhiTranslate="vksBackendApp.nominee.fatherName">Father Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="motherName">
+            <span jhiTranslate="vksBackendApp.nominee.motherName">Mother Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="guardianName">
+            <span jhiTranslate="vksBackendApp.nominee.guardianName">Guardian Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gender">
+            <span jhiTranslate="vksBackendApp.nominee.gender">Gender</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dob"><span jhiTranslate="vksBackendApp.nominee.dob">Dob</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="aadharCard">
+            <span jhiTranslate="vksBackendApp.nominee.aadharCard">Aadhar Card</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nomineeDeclareDate">
+            <span jhiTranslate="vksBackendApp.nominee.nomineeDeclareDate">Nominee Declare Date</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="relation">
+            <span jhiTranslate="vksBackendApp.nominee.relation">Relation</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="permanentAddr">
+            <span jhiTranslate="vksBackendApp.nominee.permanentAddr">Permanent Addr</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModified">
+            <span jhiTranslate="vksBackendApp.nominee.lastModified">Last Modified</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lastModifiedBy">
+            <span jhiTranslate="vksBackendApp.nominee.lastModifiedBy">Last Modified By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdBy">
+            <span jhiTranslate="vksBackendApp.nominee.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="createdOn">
+            <span jhiTranslate="vksBackendApp.nominee.createdOn">Created On</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="isDeleted">
+            <span jhiTranslate="vksBackendApp.nominee.isDeleted">Is Deleted</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="member.id">
+            <span jhiTranslate="vksBackendApp.nominee.member">Member</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let nominee of nominees; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/nominee', nominee.id, 'view']">{{ nominee.id }}</a>
+          </td>
+          <td>{{ nominee.firstName }}</td>
+          <td>{{ nominee.middleName }}</td>
+          <td>{{ nominee.lastName }}</td>
+          <td>{{ nominee.fatherName }}</td>
+          <td>{{ nominee.motherName }}</td>
+          <td>{{ nominee.guardianName }}</td>
+          <td>{{ nominee.gender }}</td>
+          <td>{{ nominee.dob | formatMediumDate }}</td>
+          <td>{{ nominee.aadharCard }}</td>
+          <td>{{ nominee.nomineeDeclareDate | formatMediumDatetime }}</td>
+          <td>{{ nominee.relation }}</td>
+          <td>{{ nominee.permanentAddr }}</td>
+          <td>{{ nominee.lastModified | formatMediumDatetime }}</td>
+          <td>{{ nominee.lastModifiedBy }}</td>
+          <td>{{ nominee.createdBy }}</td>
+          <td>{{ nominee.createdOn | formatMediumDatetime }}</td>
+          <td>{{ nominee.isDeleted }}</td>
+          <td>
+            <div *ngIf="nominee.member">
+              <a [routerLink]="['/member', nominee.member.id, 'view']">{{ nominee.member?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/nominee', nominee.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/nominee', nominee.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(nominee)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="nominees && nominees.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,256 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-member-assets-heading"
+        data-cy="MemberAssetsCreateUpdateHeading"
+        jhiTranslate="vksBackendApp.memberAssets.home.createOrEditLabel"
+      >
+        Create or edit a Member Assets
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.assetAmount" for="field_assetAmount">Asset Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            name="assetAmount"
+            id="field_assetAmount"
+            data-cy="assetAmount"
+            formControlName="assetAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.otherDocument1" for="field_otherDocument1"
+            >Other Document 1</label
+          >
+          <div>
+            <div *ngIf="editForm.get('otherDocument1')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('otherDocument1')!.value!, editForm.get('otherDocument1ContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('otherDocument1ContentType')!.value }}, {{ byteSize(editForm.get('otherDocument1')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ otherDocument1: undefined, otherDocument1ContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_otherDocument1"
+              data-cy="otherDocument1"
+              (change)="setFileData($event, 'otherDocument1', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="otherDocument1"
+            id="field_otherDocument1"
+            data-cy="otherDocument1"
+            formControlName="otherDocument1"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="otherDocument1ContentType"
+            id="field_otherDocument1ContentType"
+            formControlName="otherDocument1ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.otherDocument2" for="field_otherDocument2"
+            >Other Document 2</label
+          >
+          <div>
+            <div *ngIf="editForm.get('otherDocument2')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('otherDocument2')!.value!, editForm.get('otherDocument2ContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('otherDocument2ContentType')!.value }}, {{ byteSize(editForm.get('otherDocument2')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ otherDocument2: undefined, otherDocument2ContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_otherDocument2"
+              data-cy="otherDocument2"
+              (change)="setFileData($event, 'otherDocument2', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="otherDocument2"
+            id="field_otherDocument2"
+            data-cy="otherDocument2"
+            formControlName="otherDocument2"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="otherDocument2ContentType"
+            id="field_otherDocument2ContentType"
+            formControlName="otherDocument2ContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.assetType" for="field_assetType">Asset Type</label>
+          <select class="form-control" name="assetType" formControlName="assetType" id="field_assetType" data-cy="assetType">
+            <option [ngValue]="null">{{ 'vksBackendApp.AssetType.null' | translate }}</option>
+            <option *ngFor="let assetType of assetTypeValues" [value]="assetType">
+              {{ 'vksBackendApp.AssetType.' + assetType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.assetArea" for="field_assetArea">Asset Area</label>
+          <input type="number" class="form-control" name="assetArea" id="field_assetArea" data-cy="assetArea" formControlName="assetArea" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.assetAddress" for="field_assetAddress">Asset Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="assetAddress"
+            id="field_assetAddress"
+            data-cy="assetAddress"
+            formControlName="assetAddress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.numberOfAssets" for="field_numberOfAssets"
+            >Number Of Assets</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numberOfAssets"
+            id="field_numberOfAssets"
+            data-cy="numberOfAssets"
+            formControlName="numberOfAssets"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.lastModified" for="field_lastModified">Last Modified</label>
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberAssets.member" for="field_member">Member</label>
+          <select
+            class="form-control"
+            id="field_member"
+            data-cy="member"
+            name="member"
+            formControlName="member"
+            [compareWith]="compareMember"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="memberOption" *ngFor="let memberOption of membersSharedCollection">{{ memberOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

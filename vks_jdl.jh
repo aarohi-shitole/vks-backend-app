@@ -1,0 +1,245 @@
+entity SecurityUser {
+    firstName String
+    lastName String
+    designation String
+    username String required unique
+    passwordHash String required
+	email String unique
+    description String
+    department String
+    imageUrl String
+    activated Boolean 
+    langKey String
+    activationKey String
+    resetKey String
+    resetDate Instant
+	mobileNo String 
+    createdBy String
+	createdOn Instant
+}
+
+entity SecurityRole {
+	roleName String required unique
+	description String
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity SecurityPermission{
+	permissionName String required unique
+	description String
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+entity ParameterLookup {
+	parameterType ParameterType
+	description String
+    displayValue String
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+    isDeleted Boolean
+}
+
+entity Member {
+	firstName String
+    middleName String 
+    lastName String 
+    memberUniqueId String unique
+    fatherName String 
+    motherName String 
+    gender Gender 
+    dob LocalDate
+    email String 
+    mobileNo String 
+    religion String
+    category String
+	cast String
+    aadharCard String unique
+    panCard String unique
+    rationCard String 
+    familyMemberCount Long
+    occupation String
+    applicationDate Instant
+    status Status
+    kmpStatus Boolean
+    boardResolutionNo String
+    boardResolutionDate LocalDate
+    loanStatus LoanStatus
+    memberType String
+    isactive Boolean
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+}
+entity MemberBank {
+	bankName String 
+	branchName String
+    accountNumber Long unique
+    ifsccode String 
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+    isDeleted Boolean
+}
+
+
+entity MemberAssets {
+	assetAmount  Double
+	otherDocument1 Blob
+    otherDocument2 Blob
+    assetType AssetType
+    assetArea Integer
+    assetAddress String
+    numberOfAssets Integer
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+    isDeleted Boolean
+}
+
+
+entity MemberLandAssets { 
+    landType String
+    landGatNo String
+    landAreaInHector Double
+    jindagiPatrakNo String
+    jindagiAmount Double
+    assetLandAddress String
+    valueOfLand Double
+    assigneeOfLand Boolean
+    isDeleted Boolean
+    mLLoanNo Long
+    jindagiPatrak Blob
+    eightA Blob
+    saatBara Blob
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+}
+
+entity Nominee {
+	firstName String 
+    middleName String 
+    lastName String 
+    fatherName String 
+    motherName String 
+    guardianName String
+	gender String
+    dob LocalDate    
+    aadharCard String unique
+    nomineeDeclareDate Instant
+    relation String
+    permanentAddr String
+    lastModified Instant 
+	lastModifiedBy String 
+    createdBy String
+	createdOn Instant
+    isDeleted Boolean
+}
+
+entity Society{
+    societyName String required unique
+	address String
+    village String
+    tahsil String
+    state String
+    district String
+    logo Blob
+    registrationNumber Double
+    gstinNumber Double
+    panNumber Double
+    tanNumber Double
+    phoneNumber Double
+    emailAddress String
+    pinCode Integer
+    createdOn Instant
+	createdBy String
+	description String 
+	isActivate Boolean 
+    lastModified Instant 
+	lastModifiedBy String 
+}
+
+enum AssetType{
+	FARM_MACHINERY(Farm_Machinery)
+    HOUSE(House)
+    OTHERS(Others)
+}
+
+enum Gender{
+	MALE(Male)
+    FEMALE(Female)
+    OTHER(Other)
+}
+enum LoanStatus {
+    APPLIED(Applied)
+    PENDING(Pending)
+    CHART_GENRATED(Chart_Genrated)
+    APPROVED(Approved)
+    DISBURSED(Disbursed)
+    ACTIVE(Active)
+    CLOSED(Closed) 
+}
+
+enum Status {
+    CREATED(Created)
+    DOCUMENT_VERIFIED(Document_Verified)
+    KYC_GENREATED(KYC_Genreated)
+    KMP_GENREATED(KMP_Genreated)
+    LOAN_DEMAND(loan_Demand) 
+    LOAN_ACTIVE(Loan_Active)  
+}
+enum ParameterType {
+    ACCOUNT(Account)
+    RELIGION(Religion)
+    CASTE(Caste)
+    CATEGORY(Category)
+    FARMER(Farmer)
+    RESOLUTION(Resolution)
+    EXECUTIVE_TITLE(Executive_Title)
+    BELONGING(Belonging)
+    INVESTMENT(Investment)
+    MEASURING_UNIT(Measuring_Unit)
+    
+}
+relationship OneToOne{
+Member{memberBank} to MemberBank{member}
+}
+
+
+relationship ManyToOne{
+    SecurityUser{society} to Society
+    Society{society} to Society
+    Member{society} to Society
+    MemberAssets{member} to Member
+    Nominee{member} to Member
+    
+}
+
+relationship ManyToMany {
+  SecurityRole{securityPermission(permissionName)} to SecurityPermission{securityRole(roleName)}
+  SecurityUser{securityPermission(permissionName)} to SecurityPermission{securityUser(username)}
+  SecurityUser{securityRole(roleName)} to SecurityRole{securityUser(username)}
+  }
+  
+  
+  // Set pagination options
+paginate * with infinite-scroll
+paginate * with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with tvg

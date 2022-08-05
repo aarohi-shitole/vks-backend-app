@@ -1,0 +1,315 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-member-land-assets-heading"
+        data-cy="MemberLandAssetsCreateUpdateHeading"
+        jhiTranslate="vksBackendApp.memberLandAssets.home.createOrEditLabel"
+      >
+        Create or edit a Member Land Assets
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.landType" for="field_landType">Land Type</label>
+          <input type="text" class="form-control" name="landType" id="field_landType" data-cy="landType" formControlName="landType" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.landGatNo" for="field_landGatNo">Land Gat No</label>
+          <input type="text" class="form-control" name="landGatNo" id="field_landGatNo" data-cy="landGatNo" formControlName="landGatNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.landAreaInHector" for="field_landAreaInHector"
+            >Land Area In Hector</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="landAreaInHector"
+            id="field_landAreaInHector"
+            data-cy="landAreaInHector"
+            formControlName="landAreaInHector"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.jindagiPatrakNo" for="field_jindagiPatrakNo"
+            >Jindagi Patrak No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="jindagiPatrakNo"
+            id="field_jindagiPatrakNo"
+            data-cy="jindagiPatrakNo"
+            formControlName="jindagiPatrakNo"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.jindagiAmount" for="field_jindagiAmount"
+            >Jindagi Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="jindagiAmount"
+            id="field_jindagiAmount"
+            data-cy="jindagiAmount"
+            formControlName="jindagiAmount"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.assetLandAddress" for="field_assetLandAddress"
+            >Asset Land Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="assetLandAddress"
+            id="field_assetLandAddress"
+            data-cy="assetLandAddress"
+            formControlName="assetLandAddress"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.valueOfLand" for="field_valueOfLand">Value Of Land</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valueOfLand"
+            id="field_valueOfLand"
+            data-cy="valueOfLand"
+            formControlName="valueOfLand"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.assigneeOfLand" for="field_assigneeOfLand"
+            >Assignee Of Land</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="assigneeOfLand"
+            id="field_assigneeOfLand"
+            data-cy="assigneeOfLand"
+            formControlName="assigneeOfLand"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.isDeleted" for="field_isDeleted">Is Deleted</label>
+          <input type="checkbox" class="form-check" name="isDeleted" id="field_isDeleted" data-cy="isDeleted" formControlName="isDeleted" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.mLLoanNo" for="field_mLLoanNo">M L Loan No</label>
+          <input type="number" class="form-control" name="mLLoanNo" id="field_mLLoanNo" data-cy="mLLoanNo" formControlName="mLLoanNo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.jindagiPatrak" for="field_jindagiPatrak"
+            >Jindagi Patrak</label
+          >
+          <div>
+            <div *ngIf="editForm.get('jindagiPatrak')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('jindagiPatrak')!.value!, editForm.get('jindagiPatrakContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('jindagiPatrakContentType')!.value }}, {{ byteSize(editForm.get('jindagiPatrak')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ jindagiPatrak: undefined, jindagiPatrakContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_jindagiPatrak"
+              data-cy="jindagiPatrak"
+              (change)="setFileData($event, 'jindagiPatrak', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="jindagiPatrak"
+            id="field_jindagiPatrak"
+            data-cy="jindagiPatrak"
+            formControlName="jindagiPatrak"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="jindagiPatrakContentType"
+            id="field_jindagiPatrakContentType"
+            formControlName="jindagiPatrakContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.eightA" for="field_eightA">Eight A</label>
+          <div>
+            <div *ngIf="editForm.get('eightA')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('eightA')!.value!, editForm.get('eightAContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start">{{ editForm.get('eightAContentType')!.value }}, {{ byteSize(editForm.get('eightA')!.value!) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ eightA: undefined, eightAContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_eightA"
+              data-cy="eightA"
+              (change)="setFileData($event, 'eightA', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="eightA" id="field_eightA" data-cy="eightA" formControlName="eightA" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="eightAContentType"
+            id="field_eightAContentType"
+            formControlName="eightAContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.saatBara" for="field_saatBara">Saat Bara</label>
+          <div>
+            <div *ngIf="editForm.get('saatBara')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('saatBara')!.value!, editForm.get('saatBaraContentType')!.value!)"
+                jhiTranslate="entity.action.open"
+                >Open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('saatBaraContentType')!.value }}, {{ byteSize(editForm.get('saatBara')!.value!) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ saatBara: undefined, saatBaraContentType: undefined })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_saatBara"
+              data-cy="saatBara"
+              (change)="setFileData($event, 'saatBara', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="saatBara" id="field_saatBara" data-cy="saatBara" formControlName="saatBara" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="saatBaraContentType"
+            id="field_saatBaraContentType"
+            formControlName="saatBaraContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.lastModified" for="field_lastModified"
+            >Last Modified</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_lastModified"
+              data-cy="lastModified"
+              type="datetime-local"
+              class="form-control"
+              name="lastModified"
+              formControlName="lastModified"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="lastModifiedBy"
+            id="field_lastModifiedBy"
+            data-cy="lastModifiedBy"
+            formControlName="lastModifiedBy"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.createdBy" for="field_createdBy">Created By</label>
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" data-cy="createdBy" formControlName="createdBy" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vksBackendApp.memberLandAssets.createdOn" for="field_createdOn">Created On</label>
+          <div class="d-flex">
+            <input
+              id="field_createdOn"
+              data-cy="createdOn"
+              type="datetime-local"
+              class="form-control"
+              name="createdOn"
+              formControlName="createdOn"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
